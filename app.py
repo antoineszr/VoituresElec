@@ -1,6 +1,7 @@
 import sqlite3
 from flask import Flask
 from flask import render_template, request, redirect, url_for, g
+import zeep
 app = Flask(__name__)
 
 DATABASE = "database.db"
@@ -32,7 +33,19 @@ def close_connection(exception):
 
 @app.route('/')
 def index():
-    return render_template('index.html') 
+    return render_template('index.html')
+
+@app.route('/trajet', methods = ['POST'])
+def trajet():
+    result = request.form
+    lata = result['lata']
+    longa = result['longa']
+    latb = result['latb']
+    longb = result['longb']
+    wsdl = 'https://mycv.glaivemedia.fr/?wsdl'
+    client = zeep.Client(wsdl)
+    resultat = client.service.tempsParcours(lata, longa, latb, longb, "30")
+    return render_template("trajet.html", resultat)
 
 @app.route('/voitures')
 def voitures():
@@ -49,7 +62,7 @@ def create():
         voitures=request.form.to_dict()
         values=[voitures["marque"],voitures["modele"],voitures["autonomie"]]
         change_db("INSERT INTO voitures (marque,modele,autonomie) VALUES (?,?,?)",values)
-        return redirect(url_for("index"))
+        return redirect(url_for("voitures"))
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def udpate(id):
@@ -62,7 +75,7 @@ def udpate(id):
         voitures=request.form.to_dict()
         values=[voitures["marque"],voitures["modele"],voitures["autonomie"],id]
         change_db("UPDATE voitures SET marque=?, modele=?, autonomie=? WHERE ID=?",values)
-        return redirect(url_for("index"))
+        return redirect(url_for("voitures"))
 
 @app.route('/delete/<int:id>', methods=['GET', 'POST'])
 def delete(id):
@@ -73,4 +86,4 @@ def delete(id):
 
     if request.method == "POST":
         change_db("DELETE FROM voitures WHERE id = ?",[id])
-        return redirect(url_for("index"))
+        return redirect(url_for("voitures"))

@@ -2,9 +2,19 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Appli flask</title>
+    <title>Sauzerator</title>
 </head>
 <body>
-   <h1>Welcome to mon appli pourrie</h1>
+    <h1>Welcome to mon appli pourrie</h1>
+
+    <form action="http://localhost:5000/trajet" method="post">
+        <label>Latitude point A</label> : <input type="integer" name="lata" />
+        <label>Longitude point A</label> : <input type="integer" name="longa" />
+        <label>Latitude point B</label> : <input type="integer" name="latb" />
+        <label>Longitude point B</label> : <input type="integer" name="longb" />
+        <input type="submit" value="Valider" />
+    </form>
+
+    <a href="http://127.0.0.1:5000/voitures" target="_blank"> <input type="button" value="Consulter/modifier la liste des voitures"> </a>
 </body>
 </html>

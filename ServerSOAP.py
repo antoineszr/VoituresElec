@@ -30,7 +30,7 @@ class tempsParcours(ServiceBase):
             result = ("L'autonomie n'est pas suffisante ! Le temps de trajet est de " + duration + " plus " + tempsSTR + " minutes de recharge")
         return result
 
-            
+
 application = Application([tempsParcours], 'spyne.examples.hello.soap', in_protocol=Soap11(validator='lxml'), out_protocol=Soap11())
 wsgi_application = WsgiApplication(application)
 
