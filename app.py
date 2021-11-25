@@ -33,7 +33,8 @@ def close_connection(exception):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    voitures_list=query_db("SELECT * FROM voitures")
+    return render_template("index.html", voitures_list=voitures_list)
 
 @app.route('/trajet', methods = ['POST'])
 def trajet():
@@ -42,7 +43,7 @@ def trajet():
     longa = result['longa']
     latb = result['latb']
     longb = result['longb']
-    wsdl = 'http://127.0.0.1/?wsdl'
+    wsdl = 'https://mycv.glaivemedia.fr/?wsdl'
     client = zeep.Client(wsdl)
     resultat = client.service.tempsParcours(lata, longa, latb, longb, "30")
     return render_template("trajet.html", resultat=resultat)
