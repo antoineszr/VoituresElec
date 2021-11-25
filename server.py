@@ -5,10 +5,6 @@ from spyne import *
 from math import sin, cos, acos, pi
 import requests
 import json
-# import os
-# from flask import Flask
-
-# app = Flask(__name__)
 
 class tempsParcours(ServiceBase):
     @rpc(String, String, String, String, String, _returns=String)
@@ -38,16 +34,8 @@ class tempsParcours(ServiceBase):
 application = Application([tempsParcours], 'spyne.examples.hello.soap', in_protocol=Soap11(validator='lxml'), out_protocol=Soap11())
 wsgi_application = WsgiApplication(application)
 
-# @app.route("/")
-# def hello():
-#     return wsgi_application
-
-
 
 if __name__ == "__main__":
-    # port = int(os.environ.get("PORT", 5000))
-    # app.run(host='127.0.0.1', port=port)
-
 
     from wsgiref.simple_server import make_server
     server = make_server('0.0.0.0', 80, wsgi_application)
