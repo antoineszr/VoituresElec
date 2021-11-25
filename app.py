@@ -45,7 +45,7 @@ def trajet():
     wsdl = 'https://mycv.glaivemedia.fr/?wsdl'
     client = zeep.Client(wsdl)
     resultat = client.service.tempsParcours(lata, longa, latb, longb, "30")
-    return render_template("trajet.html", resultat)
+    return render_template("trajet.html", resultat=resultat)
 
 @app.route('/voitures')
 def voitures():
