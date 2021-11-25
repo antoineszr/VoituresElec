@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block titre %}Suppression d'une voiture{% endblock %}
+
+{% block contenu %}
+
+Souhaitez vous réellement supprimer la voiture: {{voitures.marque}} {{voitures.modele}} ?
+<form method="post">
+    <button type="submit" value="Submit">Submit</button>
+</form>
+{% endblock %}
