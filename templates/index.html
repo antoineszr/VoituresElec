@@ -1,27 +1,10 @@
-{% extends "base.html" %}
-
-{% block titre %}Liste des voitures{% endblock %}
-
-{% block contenu %}
-<table>
-    <tr>
-        <th>Marque</th>
-        <th>Modele</th>
-        <th>Autonomie</th>
-    </tr>
-    {% for voitures in voitures_list %}
-    <tr>
-        <td>{{voitures.marque}}</td>
-        <td>{{voitures.modele}}</td>
-        <td>{{voitures.autonomie}}</td>
-        <td>
-            <a href="./update/{{voitures.id}}">Modification</a>
-            <a href="./delete/{{voitures.id}}">Suppression</a>  
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-
-<a href="./create">Ajouter une voiture</a>
-
-{% endblock %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Appli flask</title>
+</head>
+<body>
+   <h1>Welcome to mon appli pourrie</h1>
+</body>
+</html>
