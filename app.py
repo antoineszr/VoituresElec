@@ -30,12 +30,12 @@ def close_connection(exception):
         db.close()
 
 
-app.route('/')
+@app.route('/')
 def index():
     return render_template('index.html') 
-    
+
 @app.route('/voitures')
-def index():
+def voitures():
     voitures_list=query_db("SELECT * FROM voitures")
     return render_template("voitures.html",voitures_list=voitures_list)
 
