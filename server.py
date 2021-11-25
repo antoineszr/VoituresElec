@@ -22,10 +22,16 @@ class tempsParcours(ServiceBase):
         print("distance = " + distance)
         print("autaunomie = " + autonomie)
 
-        if distance > autonomie:
-            result = "Une recharge sera nécessaire en plus du trajet d'une durée de " + duration
+        if distance < autonomie:
+            result = "Pas besoin de recharche, la durée du trajet est de " + duration
         else:
-            result = "trajet d'une durée de " + duration
+            distance = distance[:-3]
+            distanceINT = float(distance)
+            autonomieINT = float(autonomie)
+            restant = (distanceINT-autonomieINT)
+            temps = round(0.2*restant)
+            tempsSTR = str(temps)
+            result = ("L'autonomie n'est pas suffisante ! Le temps de trajet et de " + duration + " plus " + tempsSTR + " minutes de recharge")
         return result
 
             
