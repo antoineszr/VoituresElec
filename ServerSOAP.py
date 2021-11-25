@@ -1,22 +1,18 @@
 from spyne import *
 from spyne.server.wsgi import WsgiApplication
 from spyne.protocol.soap import Soap11
-from spyne import *
 from math import sin, cos, acos, pi
 import requests
-import json
 
 class tempsParcours(ServiceBase):
     @rpc(String, String, String, String, String, _returns=String)
     def tempsParcours(ctx, latA, longA, latB, longB, autonomie):
-        proto="http://wxs.ign.fr/essentiels/itineraire/rest/route.json?origin=" + latA + "," + longA + "&destination=" + latB + "," + longB + "&method=DISTANCE&graphName=Voiture"
+        proto="http://wxs.ign.fr/essentiels/itineraire/rest/route.json?origin=" + latA + "," + longA + "&destination=" + latB + "," + longB + "&method=DURATION&graphName=Voiture"
         rawdata= requests.get(proto)
         json_loaded = rawdata.json()
         duration = json_loaded.get('duration')
         distance = json_loaded.get('distance')
-
-        print("distance = " + distance)
-        print("autaunomie = " + autonomie)
+        distance2= distance
 
         if distance < autonomie:
             result = "Pas besoin de recharche, la durée du trajet est de " + duration
@@ -27,7 +23,7 @@ class tempsParcours(ServiceBase):
             restant = (distanceINT-autonomieINT)
             temps = round(0.2*restant)
             tempsSTR = str(temps)
-            result = ("L'autonomie n'est pas suffisante ! Le temps de trajet est de " + duration + " plus " + tempsSTR + " minutes de recharge")
+            result = ("La distance est de "+distance2+ ". L'autonomie n'est pas suffisante ! Le temps de trajet est de " + duration + " plus " + tempsSTR + " minutes de recharge")
         return result
 
 

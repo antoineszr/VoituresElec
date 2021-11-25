@@ -42,7 +42,7 @@ def trajet():
     longa = result['longa']
     latb = result['latb']
     longb = result['longb']
-    wsdl = 'https://mycv.glaivemedia.fr/?wsdl'
+    wsdl = 'http://127.0.0.1/?wsdl'
     client = zeep.Client(wsdl)
     resultat = client.service.tempsParcours(lata, longa, latb, longb, "30")
     return render_template("trajet.html", resultat=resultat)
