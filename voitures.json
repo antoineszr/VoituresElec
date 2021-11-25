@@ -1,0 +1,34 @@
+{
+    "voitures":[
+        {
+            "marque": "tesla",
+            "modele": "modele S",
+            "autonomie": "650"
+        },
+        {
+            "marque": "tesla",
+            "modele": "modele 3",
+            "autonomie": "500"
+        },
+        {
+            "marque": "tesla",
+            "modele": "modele y",
+            "autonomie": "450"
+        },
+        {
+            "marque": "renault",
+            "modele": "zoe",
+            "autonomie": "300"
+        },
+        {
+            "marque": "hyundai",
+            "modele": "ioniq 5",
+            "autonomie": "400"
+        },
+        {
+            "marque": "fiat",
+            "modele": "500e",
+            "autonomie": "250"
+        }
+    ]
+}
