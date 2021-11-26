@@ -2,6 +2,7 @@ import sqlite3
 from flask import Flask
 from flask import render_template, request, redirect, url_for, g
 import zeep
+
 app = Flask(__name__)
 
 DATABASE = "database.db"
@@ -39,13 +40,12 @@ def index():
 @app.route('/trajet', methods = ['POST'])
 def trajet():
     result = request.form
-    
     auto = result['auto']
     lata = result['lata']
     longa = result['longa']
     latb = result['latb']
     longb = result['longb']
-    wsdl = 'https://mycv.glaivemedia.fr/?wsdl'
+    wsdl = 'http://141.95.149.183/?wsdl'
     client = zeep.Client(wsdl)
     resultat = client.service.tempsParcours(lata, longa, latb, longb, auto)
     return render_template("trajet.html", resultat=resultat)
@@ -90,3 +90,4 @@ def delete(id):
     if request.method == "POST":
         change_db("DELETE FROM voitures WHERE id = ?",[id])
         return redirect(url_for("voitures"))
+

@@ -3,10 +3,10 @@
 {% block titre %}Calcul du trajet{% endblock %}
 
 {% block contenu %}
-    <form action="http://localhost:5000/trajet" method="post">
-        <select>
+    <form action="http://141.95.149.183:5000/trajet" method="post">
+        <select name="auto">
             {% for voitures in voitures_list %}
-            <option>{{voitures.modele}}, {{voitures.autonomie}} km</option> 
+            <option value={{voitures.autonomie}}>{{voitures.marque}} {{voitures.modele}}, {{voitures.autonomie}} km</option> 
             {% endfor %}
         </select>
         <label>Latitude point A</label> : <input type="integer" name="lata" />
@@ -16,5 +16,5 @@
         <input type="submit" value="Valider" />
     </form>
 
-    <a href="http://127.0.0.1:5000/voitures" target="_blank"> <input type="button" value="Consulter/modifier la liste des voitures"> </a>
+    <a href="http://141.95.149.183:5000/voitures" target="_blank"> <input type="button" value="Consulter/modifier la liste des voitures"> </a>
 {% endblock %}
