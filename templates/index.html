@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Sauzerator</title>
-</head>
-<body>
-    <h1>Appli calcul du trajet</h1>
+{% extends "base.html" %}
+
+{% block titre %}Calcul du trajet{% endblock %}
+
+{% block contenu %}
     <form action="http://localhost:5000/trajet" method="post">
         <select>
-            <option>patate</option>
-            <option>patate douce</option>
+            {% for voitures in voitures_list %}
+            <option>{{voitures.modele}}, {{voitures.autonomie}} km</option> 
+            {% endfor %}
         </select>
         <label>Latitude point A</label> : <input type="integer" name="lata" />
         <label>Longitude point A</label> : <input type="integer" name="longa" />
@@ -19,5 +17,4 @@
     </form>
 
     <a href="http://127.0.0.1:5000/voitures" target="_blank"> <input type="button" value="Consulter/modifier la liste des voitures"> </a>
-</body>
-</html>
+{% endblock %}

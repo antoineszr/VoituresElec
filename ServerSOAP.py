@@ -15,7 +15,7 @@ class tempsParcours(ServiceBase):
         distance2= distance
 
         if distance < autonomie:
-            result = "La distance est de "+distance2+ ". Pas besoin de recharche, la durée du trajet est de " + duration
+            result = "La distance est de "+distance2+ ". Pas besoin de recharge, la durée du trajet est de " + duration
         else:
             distance = distance[:-3]
             distanceINT = float(distance)

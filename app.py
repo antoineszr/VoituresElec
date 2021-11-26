@@ -39,13 +39,15 @@ def index():
 @app.route('/trajet', methods = ['POST'])
 def trajet():
     result = request.form
+    
+    auto = result['auto']
     lata = result['lata']
     longa = result['longa']
     latb = result['latb']
     longb = result['longb']
     wsdl = 'https://mycv.glaivemedia.fr/?wsdl'
     client = zeep.Client(wsdl)
-    resultat = client.service.tempsParcours(lata, longa, latb, longb, "30")
+    resultat = client.service.tempsParcours(lata, longa, latb, longb, auto)
     return render_template("trajet.html", resultat=resultat)
 
 @app.route('/voitures')
